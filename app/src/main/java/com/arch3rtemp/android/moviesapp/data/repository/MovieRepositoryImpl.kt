@@ -1,6 +1,5 @@
 package com.arch3rtemp.android.moviesapp.data.repository
 
-import com.arch3rtemp.android.moviesapp.domain.model.Cast
 import com.arch3rtemp.android.moviesapp.domain.model.Comment
 import com.arch3rtemp.android.moviesapp.domain.model.Movie
 import com.arch3rtemp.android.moviesapp.domain.repository.MovieRepository
@@ -27,11 +26,7 @@ class MovieRepositoryImpl @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override fun loadMovie(id: String): Flow<Resource<Movie>> {
-        TODO("Not yet implemented")
-    }
-
-    override fun loadCast(id: String): Flow<Resource<Cast>> {
+    override fun loadMovie(id: Long): Flow<Resource<Movie>> {
         TODO("Not yet implemented")
     }
 

@@ -1,6 +1,5 @@
 package com.arch3rtemp.android.moviesapp.domain.repository
 
-import com.arch3rtemp.android.moviesapp.domain.model.Cast
 import com.arch3rtemp.android.moviesapp.domain.model.Comment
 import com.arch3rtemp.android.moviesapp.domain.model.Movie
 import com.arch3rtemp.android.moviesapp.util.Resource
@@ -13,8 +12,7 @@ interface MovieRepository {
     fun cacheComments(id: String): Flow<Resource<Unit>>
 
     fun loadMovies(): Flow<Resource<List<Movie>>>
-    fun loadMovie(id: String): Flow<Resource<Movie>>
-    fun loadCast(id: String): Flow<Resource<Cast>>
+    fun loadMovie(id: Long): Flow<Resource<Movie>>
     fun loadComments(id: String): Flow<Resource<List<Comment>>>
 
     fun postComment(id: String): Flow<Resource<Comment>>

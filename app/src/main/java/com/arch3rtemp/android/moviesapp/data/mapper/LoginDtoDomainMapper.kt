@@ -8,14 +8,14 @@ import javax.inject.Inject
 class LoginDtoDomainMapper @Inject constructor() : Mapper<LoginDto, Login> {
     override fun from(i: LoginDto?): Login {
         return Login(
-            user = i?.user.orEmpty(),
+            username = i?.username.orEmpty(),
             password = i?.password.orEmpty()
         )
     }
 
     override fun to(o: Login?): LoginDto {
         return LoginDto(
-            user = o?.user.orEmpty(),
+            username = o?.username.orEmpty(),
             password = o?.password.orEmpty()
         )
     }

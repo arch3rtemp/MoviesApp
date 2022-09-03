@@ -1,6 +1,7 @@
 package com.arch3rtemp.android.moviesapp.data.local.dao
 
 import androidx.room.*
+import com.arch3rtemp.android.moviesapp.data.local.entity.CastEntity
 import com.arch3rtemp.android.moviesapp.data.local.entity.CommentEntity
 import com.arch3rtemp.android.moviesapp.data.local.entity.MovieEntity
 
@@ -11,7 +12,7 @@ interface MovieDao {
     suspend fun insertMovies(movies: List<MovieEntity>)
 
     @Update(entity = MovieEntity::class)
-    suspend fun insertCast(id: Long, cast: List<String>)
+    suspend fun insertCast(movie: CastEntity)
 
     @Query("SELECT * FROM movie_table")
     fun selectMovies(): List<MovieEntity>

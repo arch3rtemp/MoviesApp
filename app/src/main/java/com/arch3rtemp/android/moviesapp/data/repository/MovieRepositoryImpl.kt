@@ -5,6 +5,7 @@ import com.arch3rtemp.android.moviesapp.data.global.dto.CommentDto
 import com.arch3rtemp.android.moviesapp.data.global.dto.MovieDto
 import com.arch3rtemp.android.moviesapp.data.global.source.CommentRemoteDataSource
 import com.arch3rtemp.android.moviesapp.data.global.source.MovieRemoteDataSource
+import com.arch3rtemp.android.moviesapp.data.local.entity.CastEntity
 import com.arch3rtemp.android.moviesapp.data.local.entity.CommentEntity
 import com.arch3rtemp.android.moviesapp.data.local.entity.MovieEntity
 import com.arch3rtemp.android.moviesapp.data.local.source.CommentLocalDataSource
@@ -24,6 +25,7 @@ class MovieRepositoryImpl @Inject constructor(
     private val movieLocalDataSource: MovieLocalDataSource,
     private val movieEntityDomainMapper: Mapper<MovieEntity, Movie>,
     private val castDtoDomainMapper: Mapper<CastDto, Cast>,
+    private val castEntityDomainMapper: Mapper<CastEntity, Cast>,
     private val commentRemoteDataSource: CommentRemoteDataSource,
     private val commentDtoDomainMapper: Mapper<CommentDto, Comment>,
     private val commentLocalDataSource: CommentLocalDataSource,
@@ -43,8 +45,8 @@ class MovieRepositoryImpl @Inject constructor(
     override fun cacheCast(id: Long) = flow {
         emit(Resource.Loading)
         try {
-            val cast = castDtoDomainMapper.from(movieRemoteDataSource.fetchCast(id))
-            emit(Resource.Success(movieLocalDataSource.saveCast(id, cast.cast)))
+            val cast = Cast().copy(id = id, cast = castDtoDomainMapper.from(movieRemoteDataSource.fetchCast(id)).cast)
+            emit(Resource.Success(movieLocalDataSource.saveCast(castEntityDomainMapper.to(cast))))
         } catch (exception: Exception) {
             emit(Resource.Error(exception))
         }
@@ -90,7 +92,8 @@ class MovieRepositoryImpl @Inject constructor(
     override fun postComment(comment: Comment) = flow {
         emit(Resource.Loading)
         try {
-            emit(Resource.Success(commentRemoteDataSource.postComment(commentDtoDomainMapper.to(comment))))
+            commentRemoteDataSource.postComment(commentDtoDomainMapper.to(comment))
+            emit(Resource.Success(commentLocalDataSource.saveComment(commentEntityDomainMapper.to(comment))))
         } catch (exception: Exception) {
             emit(Resource.Error(exception))
         }

@@ -10,6 +10,6 @@ interface CommentService {
 
     @POST("Movies/{id}/Comments/Post")
     @FormUrlEncoded
-    suspend fun postComment(@Field("Post") comment: CommentDto)
+    suspend fun postComment(@Path("id") id: String, @Body comment: CommentDto)
 
 }

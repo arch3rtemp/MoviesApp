@@ -10,7 +10,10 @@ import com.arch3rtemp.android.moviesapp.data.local.entity.CommentEntity
 interface CommentDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertComments()
+    suspend fun insertComments(comments: List<CommentEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertComment(comment: CommentEntity)
 
     @Query("SELECT * FROM COMMENT_TABLE WHERE id == :id")
     fun selectComments(id: String): List<CommentEntity>

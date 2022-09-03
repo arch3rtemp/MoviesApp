@@ -7,6 +7,7 @@ import javax.inject.Inject
 class LoginRemoteDataSourceImpl @Inject constructor(
     private val loginService: LoginService
 ) : LoginRemoteDataSource {
+
     override suspend fun loginUser(login: LoginDto) {
         return loginService.login(login.user, login.password)
     }

@@ -1,9 +1,6 @@
 package com.arch3rtemp.android.moviesapp.data.local.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.arch3rtemp.android.moviesapp.data.local.entity.CommentEntity
 import com.arch3rtemp.android.moviesapp.data.local.entity.MovieEntity
 
@@ -12,6 +9,9 @@ interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMovies(movies: List<MovieEntity>)
+
+    @Update(entity = MovieEntity::class)
+    suspend fun insertCast(id: Long, cast: List<String>)
 
     @Query("SELECT * FROM movie_table")
     fun selectMovies(): List<MovieEntity>
@@ -22,6 +22,4 @@ interface MovieDao {
     @Query("DELETE FROM movie_table")
     suspend fun deleteMovies()
 
-    @Query("SELECT * FROM COMMENT_TABLE WHERE id == :id")
-    fun selectComments(id: String): List<CommentEntity>
 }

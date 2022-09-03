@@ -1,12 +1,11 @@
 package com.arch3rtemp.android.moviesapp.data.local.source
 
-import com.arch3rtemp.android.moviesapp.domain.model.Comment
-import com.arch3rtemp.android.moviesapp.domain.model.Movie
+import com.arch3rtemp.android.moviesapp.data.local.entity.MovieEntity
 
 interface MovieLocalDataSource {
-    suspend fun saveMovies(movies: List<Movie>)
-    fun loadMovies(): List<Movie>
-    fun loadMovie(id: String): Movie
+    suspend fun saveMovies(movies: List<MovieEntity>)
+    suspend fun saveCast(id: Long, cast: List<String>)
+    fun loadMovies(): List<MovieEntity>
+    fun loadMovie(id: Long): MovieEntity
     suspend fun deleteMovies()
-    fun loadComments(id: String): List<Comment>
 }

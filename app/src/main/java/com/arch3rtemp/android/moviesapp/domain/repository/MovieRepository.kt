@@ -8,12 +8,12 @@ import kotlinx.coroutines.flow.Flow
 interface MovieRepository {
 
     fun cacheMovies(): Flow<Resource<Unit>>
-    fun cacheCast(id: String): Flow<Resource<Unit>>
+    fun cacheCast(id: Long): Flow<Resource<Unit>>
     fun cacheComments(id: String): Flow<Resource<Unit>>
 
     fun loadMovies(): Flow<Resource<List<Movie>>>
     fun loadMovie(id: Long): Flow<Resource<Movie>>
     fun loadComments(id: String): Flow<Resource<List<Comment>>>
 
-    fun postComment(id: String): Flow<Resource<Comment>>
+    fun postComment(comment: Comment): Flow<Resource<Unit>>
 }

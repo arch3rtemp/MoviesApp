@@ -16,6 +16,7 @@ import com.arch3rtemp.android.moviesapp.domain.model.Movie
 import com.arch3rtemp.android.moviesapp.domain.repository.MovieRepository
 import com.arch3rtemp.android.moviesapp.util.Mapper
 import com.arch3rtemp.android.moviesapp.util.Resource
+import com.arch3rtemp.android.moviesapp.util.UiText
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
@@ -38,7 +39,7 @@ class MovieRepositoryImpl @Inject constructor(
             val movies = movieDtoDomainMapper.fromList(movieRemoteDataSource.fetchMovies())
             emit(Resource.Success(movieLocalDataSource.saveMovies(movieEntityDomainMapper.toList(movies))))
         } catch (exception: Exception) {
-            emit(Resource.Error(exception))
+            emit(Resource.Error(UiText.DynamicString(exception.message.toString())))
         }
     }
 
@@ -48,7 +49,7 @@ class MovieRepositoryImpl @Inject constructor(
             val cast = Cast().copy(id = id, cast = castDtoDomainMapper.from(movieRemoteDataSource.fetchCast(id)).cast)
             emit(Resource.Success(movieLocalDataSource.saveCast(castEntityDomainMapper.to(cast))))
         } catch (exception: Exception) {
-            emit(Resource.Error(exception))
+            emit(Resource.Error(UiText.DynamicString(exception.message.toString())))
         }
     }
 
@@ -58,7 +59,7 @@ class MovieRepositoryImpl @Inject constructor(
             val comments = commentDtoDomainMapper.fromList(commentRemoteDataSource.fetchComments(id))
             emit(Resource.Success(commentLocalDataSource.saveComments(commentEntityDomainMapper.toList(comments))))
         } catch (exception: Exception) {
-            emit(Resource.Error(exception))
+            emit(Resource.Error(UiText.DynamicString(exception.message.toString())))
         }
     }
 
@@ -67,7 +68,7 @@ class MovieRepositoryImpl @Inject constructor(
         try {
             emit(Resource.Success(movieEntityDomainMapper.fromList(movieLocalDataSource.loadMovies())))
         } catch (exception: Exception) {
-            emit(Resource.Error(exception))
+            emit(Resource.Error(UiText.DynamicString(exception.message.toString())))
         }
     }
 
@@ -76,7 +77,7 @@ class MovieRepositoryImpl @Inject constructor(
         try {
             emit(Resource.Success(movieEntityDomainMapper.from(movieLocalDataSource.loadMovie(id))))
         } catch (exception: Exception) {
-            emit(Resource.Error(exception))
+            emit(Resource.Error(UiText.DynamicString(exception.message.toString())))
         }
     }
 
@@ -85,7 +86,7 @@ class MovieRepositoryImpl @Inject constructor(
         try {
             emit(Resource.Success(commentEntityDomainMapper.fromList(commentLocalDataSource.loadComments(id))))
         } catch (exception: Exception) {
-            emit(Resource.Error(exception))
+            emit(Resource.Error(UiText.DynamicString(exception.message.toString())))
         }
     }
 
@@ -95,7 +96,7 @@ class MovieRepositoryImpl @Inject constructor(
             commentRemoteDataSource.postComment(commentDtoDomainMapper.to(comment))
             emit(Resource.Success(commentLocalDataSource.saveComment(commentEntityDomainMapper.to(comment))))
         } catch (exception: Exception) {
-            emit(Resource.Error(exception))
+            emit(Resource.Error(UiText.DynamicString(exception.message.toString())))
         }
     }
 }

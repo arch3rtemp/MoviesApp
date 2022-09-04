@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.arch3rtemp.android.moviesapp.presentation.login.LoginFragment"
-        android:label="fragment_login"
+        android:label="Log In"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_listFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.arch3rtemp.android.moviesapp.presentation.detail.DetailFragment"
-        android:label="fragment_detail"
+        android:label="Movie"
         tools:layout="@layout/fragment_detail" >
         <action
             android:id="@+id/action_detailFragment_to_commentFragment"
@@ -26,12 +26,12 @@
     <fragment
         android:id="@+id/commentFragment"
         android:name="com.arch3rtemp.android.moviesapp.presentation.comment.CommentFragment"
-        android:label="fragment_comment"
+        android:label="Movie Comments"
         tools:layout="@layout/fragment_comment" />
     <fragment
         android:id="@+id/listFragment"
         android:name="com.arch3rtemp.android.moviesapp.presentation.list.ListFragment"
-        android:label="fragment_list"
+        android:label="Movies"
         tools:layout="@layout/fragment_list" >
         <action
             android:id="@+id/action_listFragment_to_detailFragment"

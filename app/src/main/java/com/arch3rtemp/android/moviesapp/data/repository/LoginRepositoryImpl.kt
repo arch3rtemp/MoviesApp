@@ -1,5 +1,6 @@
 package com.arch3rtemp.android.moviesapp.data.repository
 
+import android.util.Log
 import com.arch3rtemp.android.moviesapp.data.global.dto.LoginDto
 import com.arch3rtemp.android.moviesapp.data.global.dto.AuthTokenDto
 import com.arch3rtemp.android.moviesapp.data.global.source.LoginRemoteDataSource
@@ -9,6 +10,7 @@ import com.arch3rtemp.android.moviesapp.domain.model.AuthToken
 import com.arch3rtemp.android.moviesapp.domain.repository.LoginRepository
 import com.arch3rtemp.android.moviesapp.util.Mapper
 import com.arch3rtemp.android.moviesapp.util.Resource
+import com.arch3rtemp.android.moviesapp.util.UiText
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
@@ -26,9 +28,11 @@ class LoginRepositoryImpl @Inject constructor(
             if (response.isSuccessful) {
                 val token = response.body()
                 emit(Resource.Success(loginLocalDataSource.saveToken(authTokenDtoDomainMapper.from(token))))
+            } else {
+                emit(Resource.Error(UiText.DynamicString(response.message())))
             }
         } catch (exception: Exception) {
-            emit(Resource.Error(exception))
+            emit(Resource.Error(UiText.DynamicString(exception.message.toString())))
         }
     }
 }

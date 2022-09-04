@@ -42,7 +42,7 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
                         when(it) {
                             Resource.Empty -> Unit
                             Resource.Loading -> setState { copy(loginState = LoginContract.LoginState.Loading) }
-                            is Resource.Error -> setStateError(UiText.DynamicString(it.exception.message.toString()))
+                            is Resource.Error -> setStateError(it.message)
                             is Resource.Success -> {
                                 setState { copy(loginState = LoginContract.LoginState.Idle) }
                                 setState { copy(loginState = LoginContract.LoginState.Idle) }

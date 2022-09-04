@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">MoviesApp</string>
+    <string name="lbl_username">Username:</string>
+    <string name="lbl_password">Password:</string>
+    <string name="lbl_sign_in">Sign In</string>
+    <string name="lbl_title">Title</string>
+    <string name="lbl_year">Year</string>
+    <string name="lbl_duration">Duration</string>
+    <string name="lbl_rating">Rating</string>
+    <string name="please_wait">Please wait…</string>
+    <string name="error_email">Please enter a valid email id.</string>
+    <string name="error_password">Please enter a valid password.</string>
 </resources>

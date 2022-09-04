@@ -10,7 +10,6 @@ import retrofit2.http.POST
 interface LoginService {
 
     @POST("Login")
-    @FormUrlEncoded
     suspend fun login(@Body loginDto: LoginDto): Response<AuthTokenDto>
 
 }

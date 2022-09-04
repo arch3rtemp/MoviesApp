@@ -9,7 +9,6 @@ interface CommentService {
     suspend fun fetchComments(@Path("id") id: String): List<CommentDto>
 
     @POST("Movies/{id}/Comments/Post")
-    @FormUrlEncoded
     suspend fun postComment(@Path("id") id: String, @Body comment: CommentDto)
 
 }

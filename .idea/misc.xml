@@ -3,7 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1816123188405797" />
+        <entry key="app/src/main/res/drawable/shape_button_bg.xml" value="0.1795" />
+        <entry key="app/src/main/res/drawable/shape_edit_text_bg.xml" value="0.1795" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/dialog_progress.xml" value="0.16458333333333333" />
+        <entry key="app/src/main/res/layout/fragment_base.xml" value="0.1816123188405797" />
+        <entry key="app/src/main/res/layout/fragment_comment.xml" value="0.1816123188405797" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.1816123188405797" />
+        <entry key="app/src/main/res/layout/fragment_list.xml" value="0.1816123188405797" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1816123188405797" />
+        <entry key="app/src/main/res/layout/recycler_movie_item.xml" value="0.33" />
       </map>
     </option>
   </component>
@@ -12,5 +21,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1816123188405797" />
+      </ProjectState>
+    </option>
   </component>
 </project>

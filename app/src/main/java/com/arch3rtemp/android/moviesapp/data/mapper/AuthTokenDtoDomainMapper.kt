@@ -5,7 +5,7 @@ import com.arch3rtemp.android.moviesapp.domain.model.AuthToken
 import com.arch3rtemp.android.moviesapp.util.Mapper
 import javax.inject.Inject
 
-class TokenDtoDomainMapper @Inject constructor() : Mapper<AuthTokenDto, AuthToken> {
+class AuthTokenDtoDomainMapper @Inject constructor() : Mapper<AuthTokenDto, AuthToken> {
     override fun from(i: AuthTokenDto?): AuthToken {
         return AuthToken(
             accessToken = i?.accessToken.orEmpty(),

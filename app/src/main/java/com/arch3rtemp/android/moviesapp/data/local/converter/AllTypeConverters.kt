@@ -5,10 +5,9 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import javax.inject.Inject
 
-class AllTypeConverters() {
+class AllTypeConverters {
 
-    @Inject
-    lateinit var gson: Gson
+    private val gson = Gson()
 
     @TypeConverter
     fun stringsToJson(list: List<String>): String {

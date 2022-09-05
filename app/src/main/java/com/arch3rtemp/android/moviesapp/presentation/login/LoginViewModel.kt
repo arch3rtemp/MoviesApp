@@ -1,10 +1,9 @@
 package com.arch3rtemp.android.moviesapp.presentation.login
 
 import android.text.TextUtils
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.arch3rtemp.android.moviesapp.R
-import com.arch3rtemp.android.moviesapp.domain.model.Login
+import com.arch3rtemp.android.moviesapp.domain.model.LoginRequest
 import com.arch3rtemp.android.moviesapp.domain.usecase.login.LoginUseCase
 import com.arch3rtemp.android.moviesapp.presentation.base.BaseViewModel
 import com.arch3rtemp.android.moviesapp.util.Constants.STATUS_ERROR
@@ -25,7 +24,7 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
 
     override fun handleEvent(event: LoginContract.Event) {
         when(event) {
-            is LoginContract.Event.OnLogin -> { loginUser(event.login) }
+            is LoginContract.Event.OnLogin -> { loginUser(event.loginRequest) }
         }
     }
 
@@ -34,10 +33,10 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
         setEffect { LoginContract.Effect.ShowSnackbar(message, STATUS_ERROR) }
     }
 
-    private fun loginUser(login: Login) {
+    private fun loginUser(loginRequest: LoginRequest) {
         viewModelScope.launch {
-            if (validateLoginDetails(login)) {
-                loginUseCase(login)
+            if (validateLoginDetails(loginRequest)) {
+                loginUseCase(loginRequest)
                     .collectLatest {
                         when(it) {
                             Resource.Empty -> Unit
@@ -54,8 +53,8 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
         }
     }
 
-    private fun validateLoginDetails(login: Login): Boolean {
-        login.apply {
+    private fun validateLoginDetails(loginRequest: LoginRequest): Boolean {
+        loginRequest.apply {
             return when {
                 TextUtils.isEmpty(username.trim { it <= ' ' }) -> {
                     setStateError(UiText.StringResource(R.string.error_email))

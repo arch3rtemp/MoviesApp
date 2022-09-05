@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.arch3rtemp.android.moviesapp.data.local.converter.AllTypeConverters
+import com.arch3rtemp.android.moviesapp.data.local.dao.CommentDao
 import com.arch3rtemp.android.moviesapp.data.local.dao.MovieDao
 import com.arch3rtemp.android.moviesapp.data.local.entity.CommentEntity
 import com.arch3rtemp.android.moviesapp.data.local.entity.MovieEntity
@@ -24,6 +25,7 @@ class DatabaseModule {
     @TypeConverters(AllTypeConverters::class)
     abstract class AppDatabase : RoomDatabase() {
         abstract fun movieDao(): MovieDao
+        abstract fun commentDao(): CommentDao
     }
 
     @Singleton
@@ -36,5 +38,9 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun provideMovieDao(database: AppDatabase): MovieDao = database.movieDao()
+
+    @Singleton
+    @Provides
+    fun provideCommentDao(database: AppDatabase): CommentDao = database.commentDao()
 
 }

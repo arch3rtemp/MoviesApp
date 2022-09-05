@@ -5,6 +5,7 @@ data class Movie(
     val title: String = "",
     val posterUrl: String = "",
     val year: String = "",
+    val duration: String = "",
     val rating: String = "",
     val cast: List<String> = listOf()
 )

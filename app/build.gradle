@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.arch3rtemp.android.moviesapp"
-        minSdk 23
+        minSdk 24
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -70,5 +70,8 @@ dependencies {
 
     // Encrypted Shared Preferences
     implementation "androidx.security:security-crypto:1.0.0"
+
+    // Coil
+    implementation "io.coil-kt:coil:$coil_version"
 
 }

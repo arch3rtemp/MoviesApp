@@ -12,6 +12,7 @@ class MovieEntityDomainMapper @Inject constructor() : Mapper<MovieEntity, Movie>
             title = i?.title.orEmpty(),
             posterUrl = i?.posterUrl.orEmpty(),
             year = i?.year.orEmpty(),
+            duration = i?.duration.orEmpty(),
             rating = i?.rating.orEmpty(),
             cast = i?.cast.orEmpty()
         )
@@ -23,6 +24,7 @@ class MovieEntityDomainMapper @Inject constructor() : Mapper<MovieEntity, Movie>
             title = o?.title.orEmpty(),
             posterUrl = o?.posterUrl.orEmpty(),
             year = o?.year.orEmpty(),
+            duration = o?.duration.orEmpty(),
             rating = o?.rating.orEmpty(),
             cast = o?.cast.orEmpty()
         )

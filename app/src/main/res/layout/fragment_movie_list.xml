@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.arch3rtemp.android.moviesapp.util.MultiStateView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/multiStateView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:animateViewChanges="true"
+    app:emptyView="@layout/common_empty_view"
+    app:errorView="@layout/common_error_view"
+    app:loadingView="@layout/common_loading_view"
+    android:background="@color/gray_light"
+    app:viewState="content"
+    tools:context=".presentation.movieList.MovieListFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_movie_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/recycler_movie_item" />
+
+</com.arch3rtemp.android.moviesapp.util.MultiStateView>

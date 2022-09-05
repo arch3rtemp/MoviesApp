@@ -12,6 +12,7 @@ data class MovieEntity(
     @ColumnInfo(name = "poster_url")
     val posterUrl: String,
     val year: String,
+    val duration: String,
     val rating: String,
     val cast: List<String>
 )

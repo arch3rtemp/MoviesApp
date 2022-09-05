@@ -1,6 +1,6 @@
 package com.arch3rtemp.android.moviesapp.presentation.login
 
-import com.arch3rtemp.android.moviesapp.domain.model.Login
+import com.arch3rtemp.android.moviesapp.domain.model.LoginRequest
 import com.arch3rtemp.android.moviesapp.util.UiEffect
 import com.arch3rtemp.android.moviesapp.util.UiEvent
 import com.arch3rtemp.android.moviesapp.util.UiState
@@ -15,7 +15,7 @@ class LoginContract {
     }
 
     sealed class Event : UiEvent {
-        data class OnLogin(val login: Login) : Event()
+        data class OnLogin(val loginRequest: LoginRequest) : Event()
     }
 
     sealed class Effect : UiEffect {

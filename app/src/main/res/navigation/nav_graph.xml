@@ -12,29 +12,54 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_listFragment"
-            app:destination="@id/listFragment" />
+            app:destination="@id/listFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
-    <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.arch3rtemp.android.moviesapp.presentation.detail.DetailFragment"
-        android:label="Movie"
-        tools:layout="@layout/fragment_detail" >
-        <action
-            android:id="@+id/action_detailFragment_to_commentFragment"
-            app:destination="@id/commentFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/commentFragment"
-        android:name="com.arch3rtemp.android.moviesapp.presentation.comment.CommentFragment"
-        android:label="Movie Comments"
-        tools:layout="@layout/fragment_comment" />
+
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.arch3rtemp.android.moviesapp.presentation.list.ListFragment"
+        android:name="com.arch3rtemp.android.moviesapp.presentation.movieList.MovieListFragment"
         android:label="Movies"
-        tools:layout="@layout/fragment_list" >
+        tools:layout="@layout/fragment_movie_list" >
         <action
             android:id="@+id/action_listFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
     </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.arch3rtemp.android.moviesapp.presentation.movieDetail.DetailFragment"
+        android:label="Movie"
+        tools:layout="@layout/fragment_detail" >
+
+        <action
+            android:id="@+id/action_detailFragment_to_commentFragment"
+            app:destination="@id/commentFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <argument
+            android:name="id"
+            app:argType="long" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/commentFragment"
+        android:name="com.arch3rtemp.android.moviesapp.presentation.movieComment.CommentFragment"
+        android:label="Movie Comments"
+        tools:layout="@layout/fragment_comment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
+
 </navigation>

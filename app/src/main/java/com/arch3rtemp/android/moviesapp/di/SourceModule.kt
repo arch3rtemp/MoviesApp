@@ -1,13 +1,7 @@
 package com.arch3rtemp.android.moviesapp.di
 
-import com.arch3rtemp.android.moviesapp.data.global.source.LoginRemoteDataSource
-import com.arch3rtemp.android.moviesapp.data.global.source.LoginRemoteDataSourceImpl
-import com.arch3rtemp.android.moviesapp.data.global.source.MovieRemoteDataSource
-import com.arch3rtemp.android.moviesapp.data.global.source.MovieRemoteDataSourceImpl
-import com.arch3rtemp.android.moviesapp.data.local.source.LoginLocalDataSource
-import com.arch3rtemp.android.moviesapp.data.local.source.LoginLocalDataSourceImpl
-import com.arch3rtemp.android.moviesapp.data.local.source.MovieLocalDataSource
-import com.arch3rtemp.android.moviesapp.data.local.source.MovieLocalDataSourceImpl
+import com.arch3rtemp.android.moviesapp.data.global.source.*
+import com.arch3rtemp.android.moviesapp.data.local.source.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -33,4 +27,12 @@ abstract class SourceModule {
     @Binds
     @Singleton
     abstract fun bindLoginLocalDataSource(loginLocalDataSource: LoginLocalDataSourceImpl): LoginLocalDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindCommentRemoteDataSource(commentRemoteDataSource: CommentRemoteDataSourceImpl): CommentRemoteDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindCommentLocalDataSource(commentLocalDataSource: CommentLocalDataSourceImpl): CommentLocalDataSource
 }

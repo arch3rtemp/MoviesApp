@@ -1,5 +1,6 @@
 package com.arch3rtemp.android.moviesapp.di
 
+import com.arch3rtemp.android.moviesapp.data.global.api.CommentService
 import com.arch3rtemp.android.moviesapp.data.global.api.LoginService
 import com.arch3rtemp.android.moviesapp.data.global.api.MovieService
 import com.arch3rtemp.android.moviesapp.util.Constants.BASE_URL
@@ -37,5 +38,6 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideGson(): Gson = Gson()
+    fun provideCommentApi(retrofit: Retrofit): CommentService =
+        retrofit.create(CommentService::class.java)
 }

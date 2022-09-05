@@ -7,7 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.arch3rtemp.android.moviesapp.R
 import com.arch3rtemp.android.moviesapp.databinding.FragmentLoginBinding
-import com.arch3rtemp.android.moviesapp.domain.model.Login
+import com.arch3rtemp.android.moviesapp.domain.model.LoginRequest
 import com.arch3rtemp.android.moviesapp.presentation.base.BaseFragment
 import com.arch3rtemp.android.moviesapp.util.showSnackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,7 +31,7 @@ class LoginFragment : BaseFragment<LoginContract.Event, LoginContract.State, Log
     }
 
     private fun getDataFromFields() = with(binding) {
-        return@with Login(
+        return@with LoginRequest(
             username = etUsername.text.toString(),
             password = etPassword.text.toString()
         )

@@ -8,9 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="gray">#757575</color>
+    <color name="gray_dark">#757575</color>
     <color name="gray_light">#F2F2F2</color>
-    <color name="gray_dark">#333333</color>
+    <color name="gray">#EEEEEE</color>
+    <color name="black_app">#333333</color>
 
     <color name="colorSnackBarError">#F72400</color>
     <color name="colorSnackBarSuccess">#8BC34A</color>

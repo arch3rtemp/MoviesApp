@@ -35,7 +35,7 @@ abstract class MapperModule {
 
     @Singleton
     @Binds
-    abstract fun bindsLoginDtoDomainModel(mapper: LoginDtoDomainMapper): Mapper<LoginDto, Login>
+    abstract fun bindsLoginDtoDomainModel(mapper: LoginDtoDomainMapper): Mapper<LoginRequestDto, LoginRequest>
 
     @Singleton
     @Binds

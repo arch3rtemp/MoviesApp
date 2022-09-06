@@ -1,6 +1,5 @@
 package com.arch3rtemp.android.moviesapp.data.repository
 
-import android.util.Log
 import com.arch3rtemp.android.moviesapp.data.global.dto.CastDto
 import com.arch3rtemp.android.moviesapp.data.global.dto.CommentDto
 import com.arch3rtemp.android.moviesapp.data.global.dto.MovieDto
@@ -12,7 +11,6 @@ import com.arch3rtemp.android.moviesapp.data.local.entity.MovieEntity
 import com.arch3rtemp.android.moviesapp.data.local.source.CommentLocalDataSource
 import com.arch3rtemp.android.moviesapp.data.local.source.LoginLocalDataSource
 import com.arch3rtemp.android.moviesapp.data.local.source.MovieLocalDataSource
-import com.arch3rtemp.android.moviesapp.domain.model.AuthToken
 import com.arch3rtemp.android.moviesapp.domain.model.Cast
 import com.arch3rtemp.android.moviesapp.domain.model.Comment
 import com.arch3rtemp.android.moviesapp.domain.model.Movie
@@ -43,7 +41,6 @@ class MovieRepositoryImpl @Inject constructor(
     override fun cacheMovies() = flow {
         emit(Resource.Loading)
         try {
-            Log.d("wtf", "cacheMovies: $token")
             val movies = movieDtoDomainMapper.fromList(movieRemoteDataSource.fetchMovies(token))
             emit(Resource.Success(movieLocalDataSource.saveMovies(movieEntityDomainMapper.toList(movies))))
         } catch (exception: Exception) {

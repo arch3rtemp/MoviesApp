@@ -2,6 +2,7 @@ package com.arch3rtemp.android.moviesapp.di
 
 import com.arch3rtemp.android.moviesapp.domain.repository.LoginRepository
 import com.arch3rtemp.android.moviesapp.domain.repository.MovieRepository
+import com.arch3rtemp.android.moviesapp.domain.usecase.login.CheckTokenUseCase
 import com.arch3rtemp.android.moviesapp.domain.usecase.login.LoginUseCase
 import com.arch3rtemp.android.moviesapp.domain.usecase.movie.*
 import dagger.Module
@@ -19,6 +20,12 @@ class UseCaseModule {
     @ViewModelScoped
     fun provideLoginUseCase(loginRepository: LoginRepository): LoginUseCase {
         return LoginUseCase(loginRepository, Dispatchers.IO)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideCheckTokenUseCase(loginRepository: LoginRepository): CheckTokenUseCase {
+        return CheckTokenUseCase(loginRepository, Dispatchers.IO)
     }
 
     @Provides

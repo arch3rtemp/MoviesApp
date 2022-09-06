@@ -17,10 +17,29 @@ class LoginLocalDataSourceImpl @Inject constructor(
     }
 
     override fun loadToken(): AuthToken {
+        var accessToken = ""
+        var tokenType = ""
+        var expiresIn = -1L
+
+        if (sharedPreferences.contains(ACCESS_TOKEN_KEY)) {
+            accessToken = sharedPreferences.getString("accessToken", "").orEmpty()
+        }
+        if (sharedPreferences.contains(TOKEN_TYPE_KEY)) {
+            tokenType = sharedPreferences.getString("tokenType", "").orEmpty()
+        }
+        if (sharedPreferences.contains(EXPIRES_IN_KEY)) {
+            expiresIn = sharedPreferences.getLong("expiresIn", -1L)
+        }
         return AuthToken(
-            accessToken = sharedPreferences.getString("accessToken", "").orEmpty(),
-            tokenType = sharedPreferences.getString("tokenType", "").orEmpty(),
-            expiresIn = sharedPreferences.getLong("expiresIn", -1)
+            accessToken = accessToken,
+            tokenType = tokenType,
+            expiresIn = expiresIn
         )
+    }
+
+    companion object {
+        const val ACCESS_TOKEN_KEY = "accessToken"
+        const val TOKEN_TYPE_KEY = "tokenType"
+        const val EXPIRES_IN_KEY = "expiresIn"
     }
 }

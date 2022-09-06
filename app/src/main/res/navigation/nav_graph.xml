@@ -5,6 +5,9 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/loginFragment">
 
+    <action
+        android:id="@+id/action_global_listFragment"
+        app:destination="@+id/listFragment" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.arch3rtemp.android.moviesapp.presentation.login.LoginFragment"

@@ -13,6 +13,6 @@ interface MovieService {
     suspend fun fetchMovies(@Header("Authorization") token: String): List<MovieDto>
 
     @GET("Movies/{id}/Cast")
-    suspend fun fetchCast(@Header("Authorization") token: String, @Path("id") id: Long): CastDto
+    suspend fun fetchCast(@Header("Authorization") token: String, @Path("id") id: Long): List<String>
 
 }

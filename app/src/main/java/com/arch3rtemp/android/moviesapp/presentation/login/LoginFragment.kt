@@ -58,7 +58,7 @@ class LoginFragment : BaseFragment<LoginContract.Event, LoginContract.State, Log
     }
 
     private fun showLoginLoading() {
-        showProgressDialog(resources.getString(R.string.please_wait))
+        showProgressDialog()
     }
 
     private fun showLoginSuccess() {

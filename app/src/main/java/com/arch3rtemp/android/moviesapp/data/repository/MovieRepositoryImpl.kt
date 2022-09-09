@@ -1,5 +1,6 @@
 package com.arch3rtemp.android.moviesapp.data.repository
 
+import android.util.Log
 import com.arch3rtemp.android.moviesapp.data.global.dto.CastDto
 import com.arch3rtemp.android.moviesapp.data.global.dto.CommentDto
 import com.arch3rtemp.android.moviesapp.data.global.dto.MovieDto
@@ -51,7 +52,7 @@ class MovieRepositoryImpl @Inject constructor(
     override fun cacheCast(id: Long) = flow {
         emit(Resource.Loading)
         try {
-            val cast = Cast().copy(id = id, cast = castDtoDomainMapper.from(movieRemoteDataSource.fetchCast(token, id)).cast)
+            val cast = Cast(id = id, cast = castDtoDomainMapper.from(movieRemoteDataSource.fetchCast(token, id)).cast)
             emit(Resource.Success(movieLocalDataSource.saveCast(castEntityDomainMapper.to(cast))))
         } catch (exception: Exception) {
             emit(Resource.Error(UiText.DynamicString(exception.message.toString())))

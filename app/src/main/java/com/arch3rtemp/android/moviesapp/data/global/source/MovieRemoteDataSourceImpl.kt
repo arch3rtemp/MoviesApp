@@ -17,7 +17,8 @@ class MovieRemoteDataSourceImpl @Inject constructor(
     }
 
     override suspend fun fetchCast(token: String, id: Long): CastDto {
-        return movieService.fetchCast(token, id)
+        val cast = movieService.fetchCast(token, id)
+        return CastDto(cast)
     }
 
 }

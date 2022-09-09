@@ -36,7 +36,7 @@ class MovieListViewModel @Inject constructor(
                         Resource.Empty -> setState { copy(movieListState = MovieListContract.MovieListState.Empty) }
                         is Resource.Error -> {
                             setState { copy(movieListState = MovieListContract.MovieListState.Error(message = it.message)) }
-                            setEffect { MovieListContract.Effect. ShowSnackBar(it.message) }
+                            setEffect { MovieListContract.Effect.ShowSnackBar(it.message) }
                         }
                         is Resource.Success -> loadMovies()
                     }

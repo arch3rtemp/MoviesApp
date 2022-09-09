@@ -27,7 +27,7 @@
             android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/AppEditText"/>
+            style="@style/AppRegularTextView"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -48,7 +48,7 @@
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/AppEditText"/>
+            style="@style/AppRegularTextView"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

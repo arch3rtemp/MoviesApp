@@ -39,7 +39,7 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.arch3rtemp.android.moviesapp.presentation.movieDetail.DetailFragment"
+        android:name="com.arch3rtemp.android.moviesapp.presentation.movieDetail.MovieDetailFragment"
         android:label="Movie"
         tools:layout="@layout/fragment_detail" >
 

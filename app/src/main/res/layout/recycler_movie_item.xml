@@ -1,104 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="20dp"
-    android:paddingVertical="10dp"
     android:background="@color/gray"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:paddingVertical="10dp">
 
-    <androidx.constraintlayout.utils.widget.ImageFilterView
+    <ImageView
         android:id="@+id/iv_poster"
         android:layout_width="50dp"
         android:layout_height="80dp"
         android:layout_marginStart="20dp"
+        android:contentDescription="@string/content_description_image"
+        android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:scaleType="centerCrop"
-        tools:src="@tools:sample/avatars"/>
+        tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tv_label_title"
+        style="@style/AppRegularTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lbl_title"
-        style="@style/AppEditText"
         android:layout_marginStart="20dp"
-        app:layout_constraintVertical_chainStyle="spread"
+        android:text="@string/lbl_title"
+        app:layout_constraintStart_toEndOf="@+id/iv_poster"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_poster" />
+        app:layout_constraintVertical_chainStyle="spread" />
 
     <TextView
         android:id="@+id/tv_label_year"
+        style="@style/AppRegularTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lbl_year"
-        style="@style/AppEditText"
         android:layout_marginStart="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_label_title"
-        app:layout_constraintStart_toEndOf="@+id/iv_poster" />
+        android:text="@string/lbl_year"
+        app:layout_constraintStart_toEndOf="@+id/iv_poster"
+        app:layout_constraintTop_toBottomOf="@+id/tv_label_title" />
 
     <TextView
         android:id="@+id/tv_label_duration"
+        style="@style/AppRegularTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lbl_duration"
-        style="@style/AppEditText"
         android:layout_marginStart="20dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_year"
-        app:layout_constraintStart_toEndOf="@+id/iv_poster" />
+        android:text="@string/lbl_duration"
+        app:layout_constraintStart_toEndOf="@+id/iv_poster"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_year" />
 
     <TextView
         android:id="@+id/tv_label_rating"
+        style="@style/AppRegularTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lbl_rating"
-        style="@style/AppEditText"
         android:layout_marginStart="20dp"
+        android:text="@string/lbl_rating"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_duration"
-        app:layout_constraintStart_toEndOf="@+id/iv_poster" />
+        app:layout_constraintStart_toEndOf="@+id/iv_poster"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_duration" />
 
     <TextView
         android:id="@+id/tv_title"
+        style="@style/AppBoldTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Reacher"
-        style="@style/AppBoldTextView"
         android:layout_marginStart="20dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_label_duration"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_label_duration" />
+        tools:text="Reacher" />
 
     <TextView
         android:id="@+id/tv_year"
+        style="@style/AppBoldTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="2022"
-        style="@style/AppBoldTextView"
         android:layout_marginStart="20dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_label_duration"
         app:layout_constraintTop_toBottomOf="@+id/tv_title"
-        app:layout_constraintStart_toEndOf="@+id/tv_label_duration" />
+        tools:text="2022" />
 
     <TextView
         android:id="@+id/tv_duration"
+        style="@style/AppBoldTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="49m"
-        style="@style/AppBoldTextView"
         android:layout_marginStart="20dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_label_duration"
         app:layout_constraintTop_toBottomOf="@+id/tv_year"
-        app:layout_constraintStart_toEndOf="@+id/tv_label_duration" />
+        tools:text="49m" />
 
     <TextView
         android:id="@+id/tv_rating"
+        style="@style/AppBoldTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="8.5"
-        style="@style/AppBoldTextView"
         android:layout_marginStart="20dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_label_duration"
         app:layout_constraintTop_toBottomOf="@+id/tv_duration"
-        app:layout_constraintStart_toEndOf="@+id/tv_label_duration" />
+        tools:text="8.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -62,10 +62,9 @@ abstract class BaseFragment<Event : UiEvent, State : UiState, Effect : UiEffect,
         prepareView(savedInstanceState)
     }
 
-    fun showProgressDialog(message: String) {
+    fun showProgressDialog() {
         progressDialog = Dialog(requireContext()).apply {
             setContentView(R.layout.dialog_progress)
-            findViewById<TextView>(R.id.tv_progress_text).text = message
             setCancelable(false)
             setCanceledOnTouchOutside(false)
             show()

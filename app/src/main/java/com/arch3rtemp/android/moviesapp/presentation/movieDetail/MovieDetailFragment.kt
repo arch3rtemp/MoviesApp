@@ -37,7 +37,7 @@ class MovieDetailFragment : BaseFragment<MovieDetailContract.Event, MovieDetailC
 
     private fun setListeners() = with(binding) {
         btnComments.setOnClickListener {
-            findNavController().navigate(MovieDetailFragmentDirections.actionDetailFragmentToCommentFragment())
+            findNavController().navigate(MovieDetailFragmentDirections.actionDetailFragmentToCommentFragment(arg.id.toString()))
         }
     }
 

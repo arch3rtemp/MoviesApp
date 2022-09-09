@@ -16,4 +16,6 @@
     <string name="lbl_cast">Cast:</string>
     <string name="lbl_show_comments">Show comments</string>
     <string name="content_description_image">image</string>
+    <string name="hint_type_a_message">Type a message</string>
+    <string name="lbl_send">Send</string>
 </resources>

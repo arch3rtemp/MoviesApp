@@ -11,7 +11,7 @@ class PostCommentUseCase(
     private val movieRepository: MovieRepository,
     private val dispatcher: CoroutineDispatcher
 ) {
-    operator fun invoke(comment: Comment): Flow<Resource<Unit>> {
+    operator fun invoke(comment: Comment): Flow<Resource<Comment>> {
         return movieRepository.postComment(comment).flowOn(dispatcher)
     }
 }

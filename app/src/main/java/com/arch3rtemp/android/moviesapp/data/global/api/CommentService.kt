@@ -10,6 +10,6 @@ interface CommentService {
     suspend fun fetchComments(@Header("Authorization") token: String, @Path("id") id: String): List<CommentDto>
 
     @POST("Movies/{id}/Comments/Post")
-    suspend fun postComment(@Header("Authorization") token: String, @Path("id") id: String, @Body comment: CommentDto)
+    suspend fun postComment(@Header("Authorization") token: String, @Path("id") id: String, @Body comment: CommentDto): CommentDto
 
 }

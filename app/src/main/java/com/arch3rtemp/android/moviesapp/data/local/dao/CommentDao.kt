@@ -15,7 +15,7 @@ interface CommentDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertComment(comment: CommentEntity)
 
-    @Query("SELECT * FROM COMMENT_TABLE WHERE id == :id")
+    @Query("SELECT * FROM comment_table WHERE movie_id == :id")
     fun selectComments(id: String): List<CommentEntity>
 
 }

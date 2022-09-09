@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.movieComment.MovieCommentFragment">
+
+    <com.arch3rtemp.android.moviesapp.util.MultiStateView
+        android:id="@+id/multiStateView"
+        app:animateViewChanges="true"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/til_comment"
+        app:layout_constraintTop_toTopOf="parent"
+        app:emptyView="@layout/common_empty_view"
+        app:errorView="@layout/common_error_view"
+        app:loadingView="@layout/common_loading_view"
+        app:viewState="content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_comments"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray_light"
+            android:padding="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/recycler_comment_item" />
+
+    </com.arch3rtemp.android.moviesapp.util.MultiStateView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_type_a_message"
+        app:hintTextColor="@color/gray_dark"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_comment"
+            style="@style/AppRegularTextView"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:paddingEnd="120dp"
+            tools:ignore="RtlSymmetry" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_send"
+        style="@style/AppButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="@string/lbl_send"
+        app:layout_constraintBottom_toBottomOf="@+id/til_comment"
+        app:layout_constraintEnd_toEndOf="@+id/til_comment"
+        app:layout_constraintTop_toTopOf="@+id/til_comment" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

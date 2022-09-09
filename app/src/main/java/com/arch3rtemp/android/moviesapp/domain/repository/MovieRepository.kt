@@ -15,5 +15,5 @@ interface MovieRepository {
     fun loadMovie(id: Long): Flow<Resource<Movie>>
     fun loadComments(id: String): Flow<Resource<List<Comment>>>
 
-    fun postComment(comment: Comment): Flow<Resource<Unit>>
+    fun postComment(comment: Comment): Flow<Resource<Comment>>
 }

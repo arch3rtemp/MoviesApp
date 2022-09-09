@@ -63,7 +63,8 @@ class MovieRepositoryImpl @Inject constructor(
         emit(Resource.Loading)
         try {
             val comments = commentDtoDomainMapper.fromList(commentRemoteDataSource.fetchComments(token, id))
-            emit(Resource.Success(commentLocalDataSource.saveComments(commentEntityDomainMapper.toList(comments))))
+            if (comments.isEmpty()) emit(Resource.Empty)
+            else emit(Resource.Success(commentLocalDataSource.saveComments(commentEntityDomainMapper.toList(comments))))
         } catch (exception: Exception) {
             emit(Resource.Error(UiText.DynamicString(exception.message.toString())))
         }
@@ -90,7 +91,13 @@ class MovieRepositoryImpl @Inject constructor(
     override fun loadComments(id: String) = flow {
         emit(Resource.Loading)
         try {
-            emit(Resource.Success(commentEntityDomainMapper.fromList(commentLocalDataSource.loadComments(id))))
+            val comments = commentEntityDomainMapper.fromList(commentLocalDataSource.loadComments(id))
+            if (comments.isEmpty()) {
+                emit(Resource.Empty)
+            }
+            else {
+                emit(Resource.Success(comments))
+            }
         } catch (exception: Exception) {
             emit(Resource.Error(UiText.DynamicString(exception.message.toString())))
         }
@@ -99,8 +106,9 @@ class MovieRepositoryImpl @Inject constructor(
     override fun postComment(comment: Comment) = flow {
         emit(Resource.Loading)
         try {
-            commentRemoteDataSource.postComment(token, commentDtoDomainMapper.to(comment))
-            emit(Resource.Success(commentLocalDataSource.saveComment(commentEntityDomainMapper.to(comment))))
+            val commentResponse = commentDtoDomainMapper.from(commentRemoteDataSource.postComment(token, commentDtoDomainMapper.to(comment)))
+            commentLocalDataSource.saveComment(commentEntityDomainMapper.to(commentResponse))
+            emit(Resource.Success(commentResponse))
         } catch (exception: Exception) {
             emit(Resource.Error(UiText.DynamicString(exception.message.toString())))
         }

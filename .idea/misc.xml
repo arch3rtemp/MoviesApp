@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable/ic_empty.xml" value="0.1795" />
         <entry key="app/src/main/res/drawable/ic_network_error.xml" value="0.1795" />
         <entry key="app/src/main/res/drawable/shape_button_bg.xml" value="0.1795" />
+        <entry key="app/src/main/res/drawable/shape_comment_item_bg.xml" value="0.1795" />
         <entry key="app/src/main/res/drawable/shape_edit_text_bg.xml" value="0.1795" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/common_empty_view.xml" value="0.165625" />
@@ -18,7 +19,9 @@
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.1816123188405797" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1816123188405797" />
+        <entry key="app/src/main/res/layout/fragment_movie_comment.xml" value="0.19927536231884058" />
         <entry key="app/src/main/res/layout/fragment_movie_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/recycler_comment_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/recycler_movie_item.xml" value="0.33" />
       </map>
     </option>

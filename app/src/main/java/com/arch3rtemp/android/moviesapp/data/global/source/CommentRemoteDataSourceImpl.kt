@@ -13,7 +13,7 @@ class CommentRemoteDataSourceImpl @Inject constructor(
         return commentService.fetchComments(token, id)
     }
 
-    override suspend fun postComment(token: String, comment: CommentDto) {
-        commentService.postComment(token, comment.id!!, comment)
+    override suspend fun postComment(token: String, comment: CommentDto): CommentDto {
+        return commentService.postComment(token, comment.movieId!!, comment)
     }
 }

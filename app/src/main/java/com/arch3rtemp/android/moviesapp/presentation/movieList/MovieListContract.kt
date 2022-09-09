@@ -10,8 +10,8 @@ class MovieListContract {
     sealed class MovieListState {
         object Idle : MovieListState()
         object Loading : MovieListState()
-        data class Error(val message: UiText) : MovieListState()
         object Empty : MovieListState()
+        data class Error(val message: UiText) : MovieListState()
         data class Success(val movies: List<Movie> = listOf()) : MovieListState()
     }
 
@@ -23,7 +23,5 @@ class MovieListContract {
         data class ShowSnackBar(val message: UiText) : Effect()
     }
 
-    data class State(
-        val movieListState: MovieListState
-    ) : UiState
+    data class State(val movieListState: MovieListState) : UiState
 }

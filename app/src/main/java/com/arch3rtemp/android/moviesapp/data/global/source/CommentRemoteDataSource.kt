@@ -6,6 +6,6 @@ interface CommentRemoteDataSource {
 
     suspend fun fetchComments(token: String, id: String): List<CommentDto>
 
-    suspend fun postComment(token: String, comment: CommentDto)
+    suspend fun postComment(token: String, comment: CommentDto): CommentDto
 
 }

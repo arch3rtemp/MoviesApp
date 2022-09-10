@@ -37,6 +37,7 @@ class MovieDetailViewModel @Inject constructor(
                         is Resource.Error -> {
                             setState { copy(movieDetailState = MovieDetailContract.MovieDetailState.Error) }
                             setEffect { MovieDetailContract.Effect.ShowSnackbar(it.message) }
+                            getMovie(id)
                         }
                         is Resource.Success -> getMovie(id)
                     }

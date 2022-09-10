@@ -43,6 +43,7 @@ class MovieRepositoryImpl @Inject constructor(
         emit(Resource.Loading)
         try {
             val movies = movieDtoDomainMapper.fromList(movieRemoteDataSource.fetchMovies(token))
+            movieLocalDataSource.deleteMovies()
             emit(Resource.Success(movieLocalDataSource.saveMovies(movieEntityDomainMapper.toList(movies))))
         } catch (exception: Exception) {
             emit(Resource.Error(UiText.DynamicString(exception.message.toString())))
@@ -63,8 +64,10 @@ class MovieRepositoryImpl @Inject constructor(
         emit(Resource.Loading)
         try {
             val comments = commentDtoDomainMapper.fromList(commentRemoteDataSource.fetchComments(token, id))
+            commentLocalDataSource.deleteComments()
             if (comments.isEmpty()) emit(Resource.Empty)
             else emit(Resource.Success(commentLocalDataSource.saveComments(commentEntityDomainMapper.toList(comments))))
+
         } catch (exception: Exception) {
             emit(Resource.Error(UiText.DynamicString(exception.message.toString())))
         }

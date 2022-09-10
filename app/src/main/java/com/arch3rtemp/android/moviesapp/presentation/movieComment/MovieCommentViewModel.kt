@@ -20,10 +20,7 @@ class MovieCommentViewModel @Inject constructor(
 ) : BaseViewModel<MovieCommentContract.Event, MovieCommentContract.State, MovieCommentContract.Effect>() {
 
     override fun createInitialState(): MovieCommentContract.State {
-        return MovieCommentContract.State(
-            commentsState = MovieCommentContract.CommentsState(MovieCommentContract.MovieCommentState.Idle),
-            postCommentState = MovieCommentContract.PostCommentState(MovieCommentContract.MovieCommentState.Idle)
-        )
+        return MovieCommentContract.State(state = MovieCommentContract.MovieCommentState.Idle)
     }
 
     override fun handleEvent(event: MovieCommentContract.Event) {
@@ -38,11 +35,11 @@ class MovieCommentViewModel @Inject constructor(
             cacheCommentsUseCase(id)
                 .collectLatest {
                     when (it) {
-                        Resource.Loading -> setState { copy(commentsState = MovieCommentContract.CommentsState(MovieCommentContract.MovieCommentState.Loading)) }
-                        Resource.Empty -> setState { copy(commentsState = MovieCommentContract.CommentsState(MovieCommentContract.MovieCommentState.Empty)) }
+                        Resource.Loading -> setState { copy(state = MovieCommentContract.MovieCommentState.Loading) }
+                        Resource.Empty -> setState { copy(state = MovieCommentContract.MovieCommentState.Empty) }
                         is Resource.Error -> {
-                            setState { copy(commentsState = MovieCommentContract.CommentsState(MovieCommentContract.MovieCommentState.Error)) }
                             setEffect { MovieCommentContract.Effect.ShowSnackBar(it.message) }
+                            loadComments(id)
                         }
                         is Resource.Success -> loadComments(id)
                     }
@@ -55,14 +52,14 @@ class MovieCommentViewModel @Inject constructor(
             loadCommentsUseCase(id)
                 .collectLatest {
                     when (it) {
-                        Resource.Loading -> setState { copy(commentsState = MovieCommentContract.CommentsState(MovieCommentContract.MovieCommentState.Loading)) }
-                        Resource.Empty -> setState { copy(commentsState = MovieCommentContract.CommentsState(MovieCommentContract.MovieCommentState.Empty)) }
+                        Resource.Loading -> setState { copy(state = MovieCommentContract.MovieCommentState.Loading) }
+                        Resource.Empty -> setState { copy(state = MovieCommentContract.MovieCommentState.Empty) }
                         is Resource.Error -> {
-                            setState { copy(commentsState = MovieCommentContract.CommentsState(MovieCommentContract.MovieCommentState.Error)) }
+                            setState { copy(state = MovieCommentContract.MovieCommentState.Error) }
                             setEffect { MovieCommentContract.Effect.ShowSnackBar(it.message) }
                         }
                         is Resource.Success -> {
-                            setState { copy(commentsState = MovieCommentContract.CommentsState(MovieCommentContract.MovieCommentState.Success, comments = it.data)) }
+                            setState { copy(state = MovieCommentContract.MovieCommentState.Success, comments = it.data) }
                         }
                     }
                 }
@@ -74,12 +71,22 @@ class MovieCommentViewModel @Inject constructor(
             postCommentUseCase(comment)
                 .collectLatest {
                     when (it) {
-                        Resource.Loading -> setState { copy(postCommentState = MovieCommentContract.PostCommentState(MovieCommentContract.MovieCommentState.Loading)) }
+                        Resource.Loading -> setState { copy(state = MovieCommentContract.MovieCommentState.Loading) }
                         Resource.Empty -> Unit
-                        is Resource.Error -> setEffect { MovieCommentContract.Effect.ShowSnackBar(it.message) }
-                        is Resource.Success -> setState { copy(postCommentState = MovieCommentContract.PostCommentState(MovieCommentContract.MovieCommentState.Success, comment = it.data)) }
+                        is Resource.Error -> {
+                            setState { copy(state = MovieCommentContract.MovieCommentState.Error) }
+                            setEffect { MovieCommentContract.Effect.ShowSnackBar(it.message) }
+                        }
+                        is Resource.Success -> setState { copy(state = MovieCommentContract.MovieCommentState.Success, comments = addComment(comment)) }
                     }
                 }
         }
+    }
+
+    private fun addComment(comment: Comment): List<Comment> {
+        val comments = ArrayList<Comment>()
+        comments.add(comment)
+        comments.addAll(currentState.comments)
+        return comments
     }
 }

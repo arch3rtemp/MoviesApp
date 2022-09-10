@@ -18,4 +18,7 @@ interface CommentDao {
     @Query("SELECT * FROM comment_table WHERE movie_id == :id")
     fun selectComments(id: String): List<CommentEntity>
 
+    @Query("DELETE FROM comment_table")
+    suspend fun deleteComments()
+
 }

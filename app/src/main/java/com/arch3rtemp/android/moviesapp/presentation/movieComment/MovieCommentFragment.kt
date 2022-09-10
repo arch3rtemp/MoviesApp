@@ -32,8 +32,7 @@ class MovieCommentFragment : BaseFragment<MovieCommentContract.Event, MovieComme
     }
 
     private fun initFirstState() {
-        if (viewModel.currentState.commentsState.commentListState == MovieCommentContract.MovieCommentState.Idle &&
-            viewModel.currentState.postCommentState.postCommentState == MovieCommentContract.MovieCommentState.Idle) {
+        if (viewModel.currentState.state == MovieCommentContract.MovieCommentState.Idle) {
             viewModel.setEvent(MovieCommentContract.Event.OnGetComments(arg.id))
         }
     }
@@ -59,50 +58,25 @@ class MovieCommentFragment : BaseFragment<MovieCommentContract.Event, MovieComme
         }
     }
 
-    private fun postComment(message: String) {
-        val comment = Comment(movieId = arg.id, message = message, createdAt = System.currentTimeMillis().toString())
+    private fun postComment(message: String) = with(binding) {
+        val comment = Comment(movieId = arg.id, message = message)
         viewModel.setEvent(MovieCommentContract.Event.OnPostComment(comment))
+        etComment.setText("")
+        etComment.clearFocus()
     }
 
-    override fun renderState(state: MovieCommentContract.State) {
-        renderCommentsState(state.commentsState)
-        renderPostCommentState(state.postCommentState)
-    }
-
-    private fun renderCommentsState(state: MovieCommentContract.CommentsState) = with(binding) {
-        when(state.commentListState) {
+    override fun renderState(state: MovieCommentContract.State) = with(binding) {
+        when(state.state) {
             MovieCommentContract.MovieCommentState.Idle -> Unit
             MovieCommentContract.MovieCommentState.Loading -> multiStateView.viewState = MultiStateView.ViewState.LOADING
             MovieCommentContract.MovieCommentState.Empty -> multiStateView.viewState = MultiStateView.ViewState.EMPTY
             is MovieCommentContract.MovieCommentState.Error -> multiStateView.viewState = MultiStateView.ViewState.ERROR
             is MovieCommentContract.MovieCommentState.Success -> {
                 commentAdapter?.submitList(state.comments)
+                rvComments.smoothScrollToPosition(0)
                 multiStateView.viewState = MultiStateView.ViewState.CONTENT
             }
         }
-    }
-
-    private fun renderPostCommentState(state: MovieCommentContract.PostCommentState) {
-        when(state.postCommentState) {
-            MovieCommentContract.MovieCommentState.Idle -> hideProgressDialog()
-            MovieCommentContract.MovieCommentState.Loading -> showProgressDialog()
-            MovieCommentContract.MovieCommentState.Empty -> hideProgressDialog()
-            MovieCommentContract.MovieCommentState.Error -> hideProgressDialog()
-            MovieCommentContract.MovieCommentState.Success -> {
-                hideProgressDialog()
-                insertNewComment(state.comment)
-            }
-        }
-    }
-
-    private fun insertNewComment(comment: Comment) = with(binding) {
-        val currentList = ArrayList<Comment>()
-        currentList.add(comment)
-        currentList.addAll(commentAdapter?.currentList!!)
-        commentAdapter?.submitList(currentList)
-        etComment.setText("")
-        etComment.clearFocus()
-        rvComments.smoothScrollToPosition(0)
     }
 
     override fun renderEffect(effect: MovieCommentContract.Effect) {
@@ -110,5 +84,4 @@ class MovieCommentFragment : BaseFragment<MovieCommentContract.Event, MovieComme
             is MovieCommentContract.Effect.ShowSnackBar -> showSnackbar(effect.message.asString(requireContext()), STATUS_ERROR)
         }
     }
-
 }

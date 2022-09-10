@@ -25,17 +25,7 @@ class MovieCommentContract {
     }
 
     data class State(
-        val commentsState: CommentsState,
-        val postCommentState: PostCommentState
-        ) : UiState
-
-    data class CommentsState(
-        val commentListState: MovieCommentState,
+        val state: MovieCommentState,
         val comments: List<Comment> = listOf()
-    )
-
-    data class PostCommentState(
-        val postCommentState: MovieCommentState,
-        val comment: Comment = Comment()
-    )
+        ) : UiState
 }

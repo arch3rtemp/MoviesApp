@@ -19,4 +19,8 @@ class CommentLocalDataSourceImpl @Inject constructor(
     override fun loadComments(id: String): List<CommentEntity> {
         return commentDao.selectComments(id)
     }
+
+    override suspend fun deleteComments() {
+        commentDao.deleteComments()
+    }
 }

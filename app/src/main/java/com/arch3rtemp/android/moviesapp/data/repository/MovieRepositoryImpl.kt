@@ -33,15 +33,14 @@ class MovieRepositoryImpl @Inject constructor(
     private val commentDtoDomainMapper: Mapper<CommentDto, Comment>,
     private val commentLocalDataSource: CommentLocalDataSource,
     private val commentEntityDomainMapper: Mapper<CommentEntity, Comment>,
-    loginLocalDataSource: LoginLocalDataSource
+    private val loginLocalDataSource: LoginLocalDataSource
 ) : MovieRepository {
-
-    private val tokenObj = loginLocalDataSource.loadToken()
-    private val token = "${tokenObj.tokenType.replaceFirstChar { it.uppercaseChar() }} ${tokenObj.accessToken}"
 
     override fun cacheMovies() = flow {
         emit(Resource.Loading)
         try {
+            val tokenObj = loginLocalDataSource.loadToken()
+            val token = "${tokenObj.tokenType.replaceFirstChar { it.uppercaseChar() }} ${tokenObj.accessToken}"
             val movies = movieDtoDomainMapper.fromList(movieRemoteDataSource.fetchMovies(token))
             movieLocalDataSource.deleteMovies()
             emit(Resource.Success(movieLocalDataSource.saveMovies(movieEntityDomainMapper.toList(movies))))
@@ -53,6 +52,8 @@ class MovieRepositoryImpl @Inject constructor(
     override fun cacheCast(id: Long) = flow {
         emit(Resource.Loading)
         try {
+            val tokenObj = loginLocalDataSource.loadToken()
+            val token = "${tokenObj.tokenType.replaceFirstChar { it.uppercaseChar() }} ${tokenObj.accessToken}"
             val cast = Cast(id = id, cast = castDtoDomainMapper.from(movieRemoteDataSource.fetchCast(token, id)).cast)
             emit(Resource.Success(movieLocalDataSource.saveCast(castEntityDomainMapper.to(cast))))
         } catch (exception: Exception) {
@@ -63,6 +64,8 @@ class MovieRepositoryImpl @Inject constructor(
     override fun cacheComments(id: String) = flow {
         emit(Resource.Loading)
         try {
+            val tokenObj = loginLocalDataSource.loadToken()
+            val token = "${tokenObj.tokenType.replaceFirstChar { it.uppercaseChar() }} ${tokenObj.accessToken}"
             val comments = commentDtoDomainMapper.fromList(commentRemoteDataSource.fetchComments(token, id))
             commentLocalDataSource.deleteComments()
             if (comments.isEmpty()) emit(Resource.Empty)
@@ -109,6 +112,8 @@ class MovieRepositoryImpl @Inject constructor(
     override fun postComment(comment: Comment) = flow {
         emit(Resource.Loading)
         try {
+            val tokenObj = loginLocalDataSource.loadToken()
+            val token = "${tokenObj.tokenType.replaceFirstChar { it.uppercaseChar() }} ${tokenObj.accessToken}"
             val commentResponse = commentDtoDomainMapper.from(commentRemoteDataSource.postComment(token, commentDtoDomainMapper.to(comment)))
             commentLocalDataSource.saveComment(commentEntityDomainMapper.to(commentResponse))
             emit(Resource.Success(commentResponse))

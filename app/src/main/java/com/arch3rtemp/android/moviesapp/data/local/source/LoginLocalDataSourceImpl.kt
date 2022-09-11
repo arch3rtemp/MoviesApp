@@ -37,6 +37,10 @@ class LoginLocalDataSourceImpl @Inject constructor(
         )
     }
 
+    override suspend fun deleteToken() {
+        sharedPreferences.edit().clear().apply()
+    }
+
     companion object {
         const val ACCESS_TOKEN_KEY = "accessToken"
         const val TOKEN_TYPE_KEY = "tokenType"

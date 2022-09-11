@@ -1,5 +1,6 @@
 package com.arch3rtemp.android.moviesapp.data.repository
 
+import android.util.Log
 import com.arch3rtemp.android.moviesapp.data.global.dto.AuthTokenDto
 import com.arch3rtemp.android.moviesapp.data.global.dto.LoginRequestDto
 import com.arch3rtemp.android.moviesapp.data.global.source.LoginRemoteDataSource
@@ -45,6 +46,15 @@ class LoginRepositoryImpl @Inject constructor(
             } else {
                 emit(Resource.Success(false))
             }
+        } catch (exception: Exception) {
+            emit(Resource.Error(UiText.DynamicString(exception.message.toString())))
+        }
+    }
+
+    override fun logOutUser() = flow {
+        emit(Resource.Loading)
+        try {
+            emit(Resource.Success(loginLocalDataSource.deleteToken()))
         } catch (exception: Exception) {
             emit(Resource.Error(UiText.DynamicString(exception.message.toString())))
         }

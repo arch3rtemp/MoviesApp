@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_empty.xml" value="0.1745" />
         <entry key="app/src/main/res/drawable/ic_empty.xml" value="0.1795" />
+        <entry key="app/src/main/res/drawable/ic_log_out.xml" value="0.1795" />
         <entry key="app/src/main/res/drawable/ic_network_error.xml" value="0.1795" />
         <entry key="app/src/main/res/drawable/shape_button_bg.xml" value="0.1795" />
         <entry key="app/src/main/res/drawable/shape_comment_item_bg.xml" value="0.1795" />
@@ -23,6 +24,7 @@
         <entry key="app/src/main/res/layout/fragment_movie_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/recycler_comment_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/recycler_movie_item.xml" value="0.33" />
+        <entry key="app/src/main/res/menu/main_menu.xml" value="0.33125" />
       </map>
     </option>
   </component>

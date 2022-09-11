@@ -8,8 +8,10 @@
     <string name="lbl_duration">Duration</string>
     <string name="lbl_rating">Rating</string>
     <string name="please_wait">Please wait…</string>
-    <string name="error_email">Please enter a valid email id.</string>
-    <string name="error_password">Please enter a valid password.</string>
+    <string name="error_blank_email">Email cannot be blank.</string>
+    <string name="error_blank_password">Password cannot be blank.</string>
+    <string name="error_incorrect_email">Please enter a valid email.</string>
+    <string name="error_incorrect_password">Password must contain at least 8 uppercase, lowercase, and digit symbols.</string>
     <string name="lbl_no_data">There is no data available at the moment! Click on the button to update!</string>
     <string name="lbl_retry">Try Again</string>
     <string name="lbl_service_not_available">Temporarily this service is not available yet, we are working on this error. Please try again later.</string>
@@ -18,4 +20,5 @@
     <string name="content_description_image">image</string>
     <string name="hint_type_a_message">Type a message</string>
     <string name="lbl_send">Send</string>
+    <string name="lbl_log_out">Log Out</string>
 </resources>

@@ -1,12 +1,15 @@
 package com.arch3rtemp.android.moviesapp.presentation.login
 
 import android.text.TextUtils
+import android.util.Log
+import androidx.core.util.PatternsCompat
 import androidx.lifecycle.viewModelScope
 import com.arch3rtemp.android.moviesapp.R
 import com.arch3rtemp.android.moviesapp.domain.model.LoginRequest
 import com.arch3rtemp.android.moviesapp.domain.usecase.login.LoginUseCase
 import com.arch3rtemp.android.moviesapp.presentation.base.BaseViewModel
 import com.arch3rtemp.android.moviesapp.util.Constants.STATUS_ERROR
+import com.arch3rtemp.android.moviesapp.util.PasswordValidator
 import com.arch3rtemp.android.moviesapp.util.Resource
 import com.arch3rtemp.android.moviesapp.util.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -57,11 +60,19 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
         loginRequest.apply {
             return when {
                 TextUtils.isEmpty(username.trim { it <= ' ' }) -> {
-                    setStateError(UiText.StringResource(R.string.error_email))
+                    setStateError(UiText.StringResource(R.string.error_blank_email))
                     false
                 }
                 TextUtils.isEmpty(password.trim { it <= ' ' }) -> {
-                    setStateError(UiText.StringResource(R.string.error_password))
+                    setStateError(UiText.StringResource(R.string.error_blank_password))
+                    false
+                }
+                !(PatternsCompat.EMAIL_ADDRESS.matcher(username).matches()) -> {
+                    setStateError(UiText.StringResource(R.string.error_incorrect_email))
+                    false
+                }
+                !(PasswordValidator.isValid(password)) -> {
+                    setStateError(UiText.StringResource(R.string.error_incorrect_password))
                     false
                 }
                 else -> {

@@ -12,4 +12,7 @@ object Constants {
     const val STATUS_ERROR = "error"
     const val STATUS_SUCCESS = "success"
     const val NOT_AVAILABLE = "N/A"
+
+    /*Regex*/
+    const val PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,20}"
 }

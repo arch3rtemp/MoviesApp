@@ -7,4 +7,5 @@ import kotlinx.coroutines.flow.Flow
 interface LoginRepository {
     fun loginUser(user: LoginRequest): Flow<Resource<Unit>>
     fun hasToken(): Flow<Resource<Boolean>>
+    fun logOutUser(): Flow<Resource<Unit>>
 }

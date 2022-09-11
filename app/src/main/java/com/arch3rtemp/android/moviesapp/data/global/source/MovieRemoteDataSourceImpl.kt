@@ -1,5 +1,6 @@
 package com.arch3rtemp.android.moviesapp.data.global.source
 
+import android.util.Log
 import com.arch3rtemp.android.moviesapp.data.global.api.MovieService
 import com.arch3rtemp.android.moviesapp.data.global.dto.CastDto
 import com.arch3rtemp.android.moviesapp.data.global.dto.CommentDto

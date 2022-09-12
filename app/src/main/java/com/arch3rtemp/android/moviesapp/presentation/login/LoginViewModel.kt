@@ -1,7 +1,6 @@
 package com.arch3rtemp.android.moviesapp.presentation.login
 
 import android.text.TextUtils
-import android.util.Log
 import androidx.core.util.PatternsCompat
 import androidx.lifecycle.viewModelScope
 import com.arch3rtemp.android.moviesapp.R

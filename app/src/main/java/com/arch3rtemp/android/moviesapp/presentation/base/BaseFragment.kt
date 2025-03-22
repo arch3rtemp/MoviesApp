@@ -86,8 +86,8 @@ abstract class BaseFragment<Event : UiEvent, State : UiState, Effect : UiEffect,
     abstract fun renderEffect(effect: Effect)
 
     override fun onDestroyView() {
-        _binding = null
         super.onDestroyView()
+        _binding = null
     }
 
 }
